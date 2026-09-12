@@ -1,94 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yawar AI Agent</title>
-  <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raza Shah AI</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <div class="app">
     <aside class="sidebar">
       <div class="brand">
-        <div class="logo">Y</div>
+        <div class="logo">RS</div>
         <div>
-          <strong>Yawar AI</strong>
-          <span>Agent System</span>
+          <h1>Raza Shah AI</h1>
+          <span>Personal AI Assistant</span>
         </div>
       </div>
 
-      <button id="newChat" class="new-chat">＋ New mission</button>
+      <button class="new-chat" onclick="newChat()">＋ New Chat</button>
 
-      <section>
-        <div class="section-title">Agent status</div>
-        <div class="status-card">
-          <span id="statusDot" class="dot"></span>
-          <div>
-            <b id="modeLabel">Checking…</b>
-            <small>Orchestrator online</small>
-          </div>
-        </div>
-      </section>
+      <nav>
+        <p class="label">Workspace</p>
+        <button class="nav-item active">⌂ <span>AI Assistant</span></button>
+        <button class="nav-item">✦ <span>Explore Skills</span></button>
+        <button class="nav-item">◈ <span>Projects</span></button>
+      </nav>
 
-      <section>
-        <div class="section-title">Capabilities</div>
-        <div id="skillList" class="skill-list"></div>
-      </section>
-
-      <div class="sidebar-foot">
-        <span>Autonomous • Traceable • Guarded</span>
+      <div class="sidebar-bottom">
+        <div class="status"><i></i> System Online</div>
+        <div class="mini">Raza Shah AI v1.0</div>
       </div>
     </aside>
 
     <main class="main">
       <header class="topbar">
         <div>
-          <span class="eyebrow">AGENT WORKSPACE</span>
-          <h1>What should I accomplish?</h1>
+          <span class="eyebrow">INTELLIGENT WORKSPACE</span>
+          <h2>Raza Shah AI</h2>
         </div>
-        <button id="traceBtn" class="ghost">Timeline</button>
+        <div class="top-actions">
+          <button title="Settings">⚙</button>
+          <div class="avatar">RS</div>
+        </div>
       </header>
 
-      <div id="messages" class="messages">
-        <div class="welcome">
-          <div class="orb">Y</div>
-          <h2>Build a goal, not just a prompt.</h2>
-          <p>Yawar AI can plan a task, select capabilities, reveal only the required skill instructions, execute guarded tools, and show you what happened.</p>
-          <div class="chips">
-            <button data-prompt="Create a plan to learn C++ loops">Learn C++</button>
-            <button data-prompt="Help me research AI agents">Research</button>
-            <button data-prompt="Calculate 125 * 48 + 90">Calculate</button>
-            <button data-prompt="Help me design a website">Build a website</button>
+      <section class="chat-area" id="chatArea">
+        <div class="welcome" id="welcome">
+          <div class="orb"><span>✦</span></div>
+          <p class="hello">WELCOME BACK</p>
+          <h3>How can I help you today?</h3>
+          <p class="sub">Ask Raza Shah AI to explain, create, plan, code, research, or solve.</p>
+
+          <div class="quick-grid">
+            <button onclick="usePrompt('Explain a difficult topic step by step')"><b>◉</b><span>Explain something</span><small>Learn with simple steps</small></button>
+            <button onclick="usePrompt('Create a study plan for me')"><b>⌁</b><span>Create a plan</span><small>Organize your work</small></button>
+            <button onclick="usePrompt('Help me write C++ code')"><b>&lt;/&gt;</b><span>Write code</span><small>Build and debug ideas</small></button>
+            <button onclick="usePrompt('Give me ideas for my project')"><b>✦</b><span>Generate ideas</span><small>Turn ideas into projects</small></button>
           </div>
         </div>
-      </div>
+      </section>
 
-      <form id="composer" class="composer">
-        <textarea id="input" rows="1" placeholder="Give Yawar AI a goal…"></textarea>
-        <button id="send" type="submit">Send ↑</button>
-      </form>
-
-      <div class="trust-row">
-        <span>⌁ Traceable timeline</span>
-        <span>◈ Skill gating</span>
-        <span>✓ Confirmation for risky actions</span>
-      </div>
-    </main>
-
-    <aside id="tracePanel" class="trace-panel hidden">
-      <div class="trace-head">
-        <div>
-          <span class="eyebrow">OBSERVABILITY</span>
-          <h2>Run timeline</h2>
+      <footer class="composer-wrap">
+        <div class="composer">
+          <textarea id="prompt" rows="1" placeholder="Message Raza Shah AI..." onkeydown="handleKey(event)"></textarea>
+          <button class="send" onclick="sendMessage()" aria-label="Send">➤</button>
         </div>
-        <button id="closeTrace" class="ghost">×</button>
-      </div>
-      <div id="traceContent" class="trace-content">
-        <p class="muted">Run a mission to see the agent trace.</p>
-      </div>
-    </aside>
+        <div class="hint">Raza Shah AI can make mistakes. Check important information.</div>
+      </footer>
+    </main>
   </div>
 
-  <script src="/app.js"></script>
+<script>
+const promptBox = document.getElementById("prompt");
+const chatArea = document.getElementById("chatArea");
+const welcome = document.getElementById("welcome");
+
+function usePrompt(text){
+  promptBox.value = text;
+  promptBox.focus();
+}
+
+function handleKey(e){
+  if(e.key === "Enter" && !e.shiftKey){
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function sendMessage(){
+  const text = promptBox.value.trim();
+  if(!text) return;
+  if(welcome) welcome.style.display = "none";
+
+  const user = document.createElement("div");
+  user.className = "message user-message";
+  user.innerHTML = `<div class="message-avatar">RS</div><div><div class="message-name">You</div><div class="bubble">${escapeHtml(text)}</div></div>`;
+  chatArea.appendChild(user);
+
+  const assistant = document.createElement("div");
+  assistant.className = "message ai-message";
+  assistant.innerHTML = `<div class="message-avatar ai">✦</div><div><div class="message-name">Raza Shah AI</div><div class="bubble ai-bubble">Hello! I'm ready to help. Connect your AI backend/API to turn this interface into a fully functional assistant.</div></div>`;
+  chatArea.appendChild(assistant);
+
+  promptBox.value = "";
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+function newChat(){
+  chatArea.innerHTML = "";
+  location.reload();
+}
+
+function escapeHtml(str){
+  return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+</script>
 </body>
 </html>

@@ -1,46 +1,12 @@
-# Yawar AI Agent — Complete Agentic Web System
+# Raza Shah AI — Frontend
 
-A starter full-stack AI-agent system designed around:
-- Autonomy & proactivity
-- Progressive disclosure of skills
-- Deterministic execution for critical operations
-- Tool/API/browser/file integration points
-- Product transparency, confidence and an action timeline
+A polished, responsive AI-assistant frontend.
 
-## Architecture
+## Files
+- index.html
+- assets/style.css
 
-Browser UI → Node/Express API → Agent Orchestrator → Model Provider + Tools
+## GitHub Pages
+Upload `index.html` and the `assets` folder to your repository. Make sure `index.html` is in the repository root.
 
-The frontend is static and can be hosted on GitHub Pages, but **the backend must run on a server** if you use a real API key. Never put an AI API key in `public/`.
-
-## Quick start
-
-1. Install Node.js 18+.
-2. Open a terminal in this folder.
-3. Run:
-   `npm install`
-4. Copy `.env.example` to `.env`.
-5. Add your model provider URL/key.
-6. Run:
-   `npm start`
-7. Open:
-   `http://localhost:3000`
-
-## Provider
-
-The server uses an OpenAI-compatible `/chat/completions` endpoint. It can be adapted to another provider by editing `server/model.js`.
-
-For a no-key demo, leave the provider unset. The agent will run in DEMO mode so you can test the UI, planning, skills, tool execution, timeline and safety gates.
-
-## Important
-
-This project intentionally uses allowlisted tools. Critical actions require deterministic tool schemas and confirmation rather than letting the model invent arbitrary commands.
-
-## Folder map
-
-- `public/` — web interface
-- `server/` — agent backend
-- `skills/` — progressive-disclosure skill metadata + full instructions
-- `data/` — local demo state
-- `.env.example` — configuration
-- `package.json` — dependencies/scripts
+This frontend is UI-only. To make the assistant actually answer with AI, connect the JavaScript `sendMessage()` function to your secure backend/API. Never put a private API key in frontend JavaScript.
