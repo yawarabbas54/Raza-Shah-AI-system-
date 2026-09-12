@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yawar AI Agent</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">Y</div>
+        <div>
+          <strong>Yawar AI</strong>
+          <span>Agent System</span>
+        </div>
+      </div>
+
+      <button id="newChat" class="new-chat">＋ New mission</button>
+
+      <section>
+        <div class="section-title">Agent status</div>
+        <div class="status-card">
+          <span id="statusDot" class="dot"></span>
+          <div>
+            <b id="modeLabel">Checking…</b>
+            <small>Orchestrator online</small>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Capabilities</div>
+        <div id="skillList" class="skill-list"></div>
+      </section>
+
+      <div class="sidebar-foot">
+        <span>Autonomous • Traceable • Guarded</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">AGENT WORKSPACE</span>
+          <h1>What should I accomplish?</h1>
+        </div>
+        <button id="traceBtn" class="ghost">Timeline</button>
+      </header>
+
+      <div id="messages" class="messages">
+        <div class="welcome">
+          <div class="orb">Y</div>
+          <h2>Build a goal, not just a prompt.</h2>
+          <p>Yawar AI can plan a task, select capabilities, reveal only the required skill instructions, execute guarded tools, and show you what happened.</p>
+          <div class="chips">
+            <button data-prompt="Create a plan to learn C++ loops">Learn C++</button>
+            <button data-prompt="Help me research AI agents">Research</button>
+            <button data-prompt="Calculate 125 * 48 + 90">Calculate</button>
+            <button data-prompt="Help me design a website">Build a website</button>
+          </div>
+        </div>
+      </div>
+
+      <form id="composer" class="composer">
+        <textarea id="input" rows="1" placeholder="Give Yawar AI a goal…"></textarea>
+        <button id="send" type="submit">Send ↑</button>
+      </form>
+
+      <div class="trust-row">
+        <span>⌁ Traceable timeline</span>
+        <span>◈ Skill gating</span>
+        <span>✓ Confirmation for risky actions</span>
+      </div>
+    </main>
+
+    <aside id="tracePanel" class="trace-panel hidden">
+      <div class="trace-head">
+        <div>
+          <span class="eyebrow">OBSERVABILITY</span>
+          <h2>Run timeline</h2>
+        </div>
+        <button id="closeTrace" class="ghost">×</button>
+      </div>
+      <div id="traceContent" class="trace-content">
+        <p class="muted">Run a mission to see the agent trace.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
