@@ -1,0 +1,16 @@
+title: Raza Shah AI
+description: Raza Shah AI — Intelligent AI Assistant
+author: Raza Shah
+
+theme: jekyll-theme-cayman
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+show_downloads: false
+
+github:
+  is_project_page: true
